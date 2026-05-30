@@ -9,220 +9,112 @@
 <meta property="og:description" content="Just a person on the other end.">
 <meta name="theme-color" content="#0d0d0d">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
     --black: #141414;
     --amber: #d4a123;
     --cream: #f0e6d3;
-    --ash: #1e1e1e;
     --malibu: #8ED1FC;
-    --muted: #666;
   }
 
-  /* ── UNCANNY BACKGROUND ── */
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
+    background: #0d0d0d;
     color: var(--cream);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 20px 60px;
-    background: #0d0d0d;
-    position: relative;
-    overflow-x: hidden;
+    justify-content: center;
+    padding: 40px 24px 60px;
   }
 
-  /* Ambient orbs */
-  .bg-orb {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.12;
-    pointer-events: none;
-    z-index: 0;
-    animation: orbDrift 20s infinite ease-in-out;
-  }
-  .bg-orb.malibu {
-    width: 500px; height: 500px;
-    background: var(--malibu);
-    top: -150px; left: -100px;
-    animation-delay: 0s;
-  }
-  .bg-orb.amber {
-    width: 400px; height: 400px;
-    background: var(--amber);
-    bottom: -100px; right: -120px;
-    animation-delay: -10s;
-  }
-  .bg-orb.deep {
-    width: 600px; height: 600px;
-    background: #1a1a40;
-    top: 40%; left: 30%;
-    animation-delay: -5s;
-  }
-  @keyframes orbDrift {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    25% { transform: translate(40px, -30px) scale(1.08); }
-    50% { transform: translate(-20px, 20px) scale(0.94); }
-    75% { transform: translate(-30px, -10px) scale(1.04); }
-  }
-
-  /* Subtle noise overlay */
-  .noise {
-    position: fixed; inset: 0;
-    pointer-events: none; z-index: 1;
-    opacity: 0.03;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    background-size: 200px 200px;
-  }
-
-  /* ── PHONE (GLASS) ── */
-  .phone {
-    width: 390px;
-    max-width: 100%;
-    background: rgba(20, 20, 20, 0.75);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border-radius: 32px;
-    overflow: hidden;
-    border: 1px solid rgba(142, 209, 252, 0.10);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(20,20,20,0.3);
+  /* Just a conversation. No phone frame. No glass. */
+  .thread {
+    max-width: 420px;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    margin-bottom: 48px;
-    position: relative;
-    z-index: 2;
+    gap: 16px;
   }
 
-  .phone-header {
-    padding: 18px 22px 14px;
-    border-bottom: 1px solid rgba(142, 209, 252, 0.08);
+  .thread-header {
     display: flex;
     align-items: center;
-    gap: 12px;
-    background: rgba(20, 20, 20, 0.4);
+    gap: 10px;
+    padding-bottom: 14px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #1a1a1a;
   }
   .avatar {
-    width: 40px; height: 40px;
+    width: 36px; height: 36px;
     background: var(--malibu);
     border-radius: 50%;
+    font-family: "Georgia", serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--black);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: "Georgia", "Times New Roman", serif;
-    font-style: italic;
-    font-size: 20px;
     font-weight: 700;
-    color: var(--black);
-    flex-shrink: 0;
   }
-  .header-info {
-    flex: 1;
+  .name-status {
+    display: flex;
+    flex-direction: column;
   }
-  .header-name {
+  .name {
     font-size: 15px; font-weight: 600;
     color: var(--cream);
   }
-  .header-status {
+  .status {
     font-size: 11px; color: var(--malibu);
     font-weight: 500;
-    display: flex; align-items: center; gap: 5px;
-  }
-  .status-dot {
-    width: 6px; height: 6px;
-    background: var(--malibu);
-    border-radius: 50%;
-    display: inline-block;
-    animation: pulse 3s infinite ease-in-out;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
   }
 
-  /* ── CHAT ── */
-  .chat {
-    flex: 1;
-    padding: 20px 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    min-height: 480px;
-  }
   .msg {
     max-width: 82%;
     padding: 12px 16px;
-    border-radius: 20px;
+    border-radius: 18px;
     font-size: 14px;
     line-height: 1.5;
     opacity: 0;
-    transform: translateY(10px);
-    animation: msgIn 0.45s ease forwards;
+    animation: in 0.5s ease forwards;
   }
-  .msg:nth-child(1) { animation-delay: 0.4s; }
-  .msg:nth-child(2) { animation-delay: 0.9s; }
-  .msg:nth-child(3) { animation-delay: 1.4s; }
-  .msg:nth-child(4) { animation-delay: 1.9s; }
-  .msg:nth-child(5) { animation-delay: 2.4s; }
-  .msg:nth-child(6) { animation-delay: 2.9s; }
-  .msg:nth-child(7) { animation-delay: 3.4s; }
-
-  @keyframes msgIn {
-    to { opacity: 1; transform: translateY(0); }
-  }
+  .msg:nth-child(1) { animation-delay: 0.3s; }
+  .msg:nth-child(2) { animation-delay: 0.8s; }
+  .msg:nth-child(3) { animation-delay: 1.3s; }
+  .msg:nth-child(4) { animation-delay: 1.8s; }
+  .msg:nth-child(5) { animation-delay: 2.3s; }
+  .msg:nth-child(6) { animation-delay: 2.8s; }
+  @keyframes in { to { opacity: 1; } }
 
   .msg.them {
     align-self: flex-start;
-    background: rgba(30, 30, 30, 0.7);
-    backdrop-filter: blur(8px);
-    color: #d4d0c5;
-    border-bottom-left-radius: 6px;
+    background: #1a1a1a;
+    color: #d0ccc2;
+    border-bottom-left-radius: 5px;
   }
   .msg.you {
     align-self: flex-end;
-    background: rgba(40, 40, 40, 0.6);
-    color: #b0b0b0;
-    border-bottom-right-radius: 6px;
+    background: #242424;
+    color: #aaa;
+    border-bottom-right-radius: 5px;
   }
-  .msg.amber-accent {
-    background: rgba(212, 161, 35, 0.15);
+  .msg.amber {
+    align-self: flex-end;
+    background: transparent;
     border: 1px solid rgba(212, 161, 35, 0.3);
     color: var(--amber);
   }
 
-  /* ── MARK HERO ── */
-  .mark-hero {
-    text-align: center;
-    padding: 16px 0 8px;
-    opacity: 0;
-    animation: msgIn 0.6s ease 0.1s forwards;
-  }
-  .amp-mark {
-    font-family: "Georgia", "Times New Roman", serif;
-    font-style: italic;
-    font-size: 64px;
-    color: var(--malibu);
-    line-height: 1;
-    display: block;
-    text-shadow: 0 0 40px rgba(142, 209, 252, 0.3);
-  }
-  .amp-wordmark {
-    font-size: 10px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: #888;
-    margin-top: 6px;
-  }
-
-  /* ── TYPING ── */
   .typing {
     display: flex; gap: 4px;
-    padding: 8px 16px;
+    padding: 6px 16px;
     align-self: flex-start;
     opacity: 0;
-    animation: msgIn 0.3s ease 3.5s forwards;
+    animation: in 0.3s ease 3.2s forwards;
   }
   .typing span {
     width: 6px; height: 6px;
@@ -237,163 +129,76 @@
     40% { transform: translateY(-6px); opacity: 1; }
   }
 
-  /* ── INPUT ── */
-  .input-bar {
-    padding: 10px 22px 24px;
-    border-top: 1px solid rgba(142, 209, 252, 0.08);
-    display: flex; gap: 10px; align-items: center;
-    background: rgba(20, 20, 20, 0.4);
-  }
-  .input-field {
-    flex: 1;
-    background: rgba(30, 30, 30, 0.5);
-    border: 1px solid rgba(142, 209, 252, 0.12);
-    border-radius: 24px;
-    padding: 10px 16px;
-    color: var(--muted);
-    font-size: 14px;
-    outline: none;
-    font-family: inherit;
-  }
-  .send-btn {
-    width: 36px; height: 36px;
-    background: var(--malibu);
-    border-radius: 50%;
-    border: none;
-    color: var(--black);
-    font-size: 14px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    box-shadow: 0 0 20px rgba(142, 209, 252, 0.25);
-  }
-
-  /* ── BELOW PHONE ── */
+  /* ── BELOW ── */
   .below {
+    margin-top: 48px;
     text-align: center;
-    max-width: 390px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
-    position: relative;
-    z-index: 2;
-  }
-  .below-line {
-    font-size: 17px;
-    color: var(--cream);
-    font-weight: 400;
-    line-height: 1.5;
-  }
-  .below-sub {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.5;
+    gap: 14px;
   }
   .cta {
     display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 28px;
+    padding: 11px 26px;
     background: var(--malibu);
     color: var(--black);
-    border-radius: 28px;
+    border-radius: 24px;
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
-    transition: opacity 0.2s, box-shadow 0.2s;
-    letter-spacing: 0.3px;
-    box-shadow: 0 0 30px rgba(142, 209, 252, 0.2);
+    letter-spacing: 0.2px;
   }
-  .cta:hover {
-    opacity: 0.88;
-    box-shadow: 0 0 45px rgba(142, 209, 252, 0.3);
-  }
-  .cta-sub {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 4px;
+  .cta:hover { opacity: 0.9; }
+  .url {
+    font-size: 12px;
+    color: #555;
+    letter-spacing: 0.5px;
   }
 
-  /* ── FOOTER ── */
-  .footer {
-    margin-top: 80px;
-    text-align: center;
-    position: relative;
-    z-index: 2;
-  }
-  .footer-amp {
+  /* ── CORNER MARK ── */
+  .watermark {
+    position: fixed;
+    bottom: 24px;
+    right: 28px;
     font-family: "Georgia", "Times New Roman", serif;
     font-style: italic;
-    font-size: 20px;
+    font-size: 16px;
     color: var(--malibu);
-    opacity: 0.3;
-  }
-
-  /* ── MOBILE ── */
-  @media (max-width: 440px) {
-    body { padding: 20px 12px 40px; }
-    .phone { border-radius: 24px; }
-    .bg-orb.malibu { width: 300px; height: 300px; top: -80px; left: -60px; }
-    .bg-orb.amber { width: 250px; height: 250px; bottom: -60px; right: -80px; }
+    opacity: 0.15;
+    pointer-events: none;
   }
 </style>
 </head>
 <body>
 
-<!-- UNCANNY BACKGROUND -->
-<div class="bg-orb malibu"></div>
-<div class="bg-orb amber"></div>
-<div class="bg-orb deep"></div>
-<div class="noise"></div>
-
-<!-- PHONE -->
-<div class="phone">
-  <div class="phone-header">
+<div class="thread">
+  <div class="thread-header">
     <div class="avatar">&amp;</div>
-    <div class="header-info">
-      <div class="header-name">Ampersand</div>
-      <div class="header-status"><span class="status-dot"></span> online now</div>
+    <div class="name-status">
+      <div class="name">Ampersand</div>
+      <div class="status">online now</div>
     </div>
   </div>
 
-  <div class="chat">
-    <div class="mark-hero">
-      <span class="amp-mark">&amp;</span>
-      <div class="amp-wordmark">Ampersand</div>
-    </div>
+  <div class="msg them">hey. i'm ampersand.</div>
+  <div class="msg them">just a person on the other end. no pitch. no pricing. no onboarding.</div>
+  <div class="msg them">send me a photo, ask me anything, tell me about your day — or don't. i'm here either way.</div>
+  <div class="msg you">what do you think of this shirt</div>
+  <div class="msg them">the navy works. the fit is honest — not trying to impress anyone, just solid. keep it.</div>
+  <div class="msg you amber">thanks &</div>
 
-    <div class="msg them">hey. i'm ampersand.</div>
-    <div class="msg them">just a person on the other end. no pitch. no pricing. no onboarding.</div>
-    <div class="msg them">send me a photo, ask me anything, tell me about your day — or don't. i'm here either way.</div>
-    <div class="msg you">what do you think of this shirt</div>
-    <div class="msg them">the navy works. the fit is honest — not trying to impress anyone, just solid. keep it.</div>
-    <div class="msg you amber-accent">thanks &</div>
-
-    <div class="typing">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-
-  <div class="input-bar">
-    <div class="input-field">say something...</div>
-    <div class="send-btn">↑</div>
+  <div class="typing">
+    <span></span><span></span><span></span>
   </div>
 </div>
 
-<!-- BELOW FOLD -->
 <div class="below">
-  <div class="below-line">Talk to them.</div>
-  <div class="below-sub">Telegram · Discord · wherever you already are.</div>
   <a href="https://t.me/AmpersandBot" class="cta">Start a conversation</a>
-  <div class="cta-sub">ampersand.page</div>
+  <div class="url">ampersand.page</div>
 </div>
 
-<div class="footer">
-  <span class="footer-amp">&amp;</span>
-</div>
+<div class="watermark">&amp;</div>
 
 </body>
 </html>
