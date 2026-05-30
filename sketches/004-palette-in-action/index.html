@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ampersand — Palette In Action</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #141414;
+    --amber: #d4a123;
+    --cream: #f0e6d3;
+    --ash: #1e1e1e;
+    --muted: #666;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #0d0d0d;
+    color: var(--cream);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  .container {
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  /* ——— SECTION HEADERS ——— */
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  /* ——— 1. APP ICON STUDIES ——— */
+  .icon-studies {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .icon-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .icon {
+    width: 72px; height: 72px;
+    background: var(--amber);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Georgia", "Times New Roman", serif;
+    font-style: italic;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--black);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .icon.dark {
+    background: var(--black);
+    border: 1.5px solid var(--amber);
+    color: var(--amber);
+  }
+  .icon.circle {
+    border-radius: 50%;
+  }
+  .icon.cream-bg {
+    background: var(--cream);
+    color: var(--black);
+    border-radius: 50%;
+  }
+  .icon-label {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+
+  /* ——— 2. SHARE CARD ——— */
+  .share-card {
+    background: var(--black);
+    border: 1px solid #222;
+    border-radius: 20px;
+    padding: 32px;
+    text-align: center;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .share-card .amp {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-style: italic;
+    font-size: 64px;
+    color: var(--amber);
+    line-height: 1;
+    display: block;
+  }
+  .share-card .name {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-top: 8px;
+  }
+  .share-card .rule {
+    height: 1px;
+    background: #2a2a2a;
+    margin: 20px 0;
+  }
+  .share-card .tag {
+    font-size: 14px;
+    color: var(--cream);
+    line-height: 1.6;
+  }
+  .share-card .url {
+    font-size: 13px;
+    color: var(--amber);
+    margin-top: 16px;
+    font-weight: 500;
+  }
+
+  /* ——— 3. CONVERSATION THREAD ——— */
+  .thread {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .msg {
+    max-width: 82%;
+    padding: 11px 15px;
+    border-radius: 18px;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .msg.them {
+    align-self: flex-start;
+    background: var(--ash);
+    color: #ccc;
+    border-bottom-left-radius: 5px;
+  }
+  .msg.you {
+    align-self: flex-end;
+    background: #2a2a2a;
+    color: #aaa;
+    border-bottom-right-radius: 5px;
+  }
+  .msg.you.amber {
+    background: var(--amber);
+    color: var(--black);
+    font-weight: 500;
+  }
+  .thread-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .thread-avatar {
+    width: 32px; height: 32px;
+    background: var(--amber);
+    border-radius: 50%;
+    font-family: "Georgia", serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+  .thread-name {
+    font-size: 14px; font-weight: 600;
+    color: var(--cream);
+  }
+  .thread-status {
+    font-size: 11px; color: var(--amber);
+  }
+  .typing {
+    display: flex; gap: 4px; padding: 6px 15px;
+    align-self: flex-start;
+  }
+  .typing span {
+    width: 6px; height: 6px;
+    background: var(--amber);
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out;
+  }
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes bounce {
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.3; }
+    40% { transform: translateY(-6px); opacity: 1; }
+  }
+
+  /* ——— 4. LANDING HERO ——— */
+  .hero-preview {
+    background: var(--black);
+    border-radius: 24px;
+    padding: 56px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-preview::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(212,161,35,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-amp {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-style: italic;
+    font-size: clamp(80px, 12vw, 120px);
+    color: var(--amber);
+    line-height: 1;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-sub {
+    font-size: 15px;
+    color: var(--cream);
+    margin-top: 16px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-input {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ash);
+    border: 1px solid #2a2a2a;
+    border-radius: 28px;
+    padding: 10px 20px;
+    margin-top: 24px;
+    font-size: 14px;
+    color: var(--muted);
+    position: relative;
+    z-index: 1;
+  }
+  .hero-input .cursor {
+    width: 2px; height: 16px;
+    background: var(--amber);
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ——— 5. COLOR RATIO COMPARISON ——— */
+  .ratios {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .ratio-card {
+    width: 120px; height: 120px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+  .ratio-card.amber-black {
+    background: var(--amber);
+    color: var(--black);
+  }
+  .ratio-card.cream-black {
+    background: var(--cream);
+    color: var(--black);
+  }
+  .ratio-card.black-amber {
+    background: var(--black);
+    border: 1px solid #222;
+    color: var(--amber);
+  }
+  .ratio-card.ash-amber {
+    background: var(--ash);
+    color: var(--amber);
+  }
+  .ratio-card .amp-sm {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-style: italic;
+    font-size: 28px;
+  }
+
+  /* ——— 6. BADGE / PILL ——— */
+  .badge-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .badge {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  .badge.amber-fill { background: var(--amber); color: var(--black); }
+  .badge.amber-outline { background: transparent; border: 1px solid var(--amber); color: var(--amber); }
+  .badge.cream-outline { background: transparent; border: 1px solid var(--cream); color: var(--cream); }
+  .badge.ash-fill { background: var(--ash); color: var(--cream); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- APP ICONS -->
+  <div>
+    <div class="section-label">App Icon</div>
+    <div class="icon-studies">
+      <div class="icon-box">
+        <div class="icon">&amp;</div>
+        <div class="icon-label">Amber fill</div>
+      </div>
+      <div class="icon-box">
+        <div class="icon dark">&amp;</div>
+        <div class="icon-label">Dark fill</div>
+      </div>
+      <div class="icon-box">
+        <div class="icon circle">&amp;</div>
+        <div class="icon-label">Round amber</div>
+      </div>
+      <div class="icon-box">
+        <div class="icon cream-bg">&amp;</div>
+        <div class="icon-label">Cream round</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHARE CARD -->
+  <div>
+    <div class="section-label">Share Card</div>
+    <div class="share-card">
+      <span class="amp">&amp;</span>
+      <div class="name">Ampersand</div>
+      <div class="rule"></div>
+      <div class="tag">just a person<br>on the other end</div>
+      <div class="url">ampersand.page</div>
+    </div>
+  </div>
+
+  <!-- CONVERSATION -->
+  <div>
+    <div class="section-label">Conversation</div>
+    <div class="thread">
+      <div class="thread-header">
+        <div class="thread-avatar">&amp;</div>
+        <div>
+          <div class="thread-name">Ampersand</div>
+          <div class="thread-status">online now</div>
+        </div>
+      </div>
+      <div class="msg them">hey, i'm ampersand.</div>
+      <div class="msg them" style="max-width:88%">send me a photo, ask me anything, or just say what's on your mind.</div>
+      <div class="msg you">what do you think of this shirt</div>
+      <div class="msg them">the navy works. the fit is honest — not trying to impress anyone, just solid. keep it.</div>
+      <div class="msg you amber">thanks &</div>
+      <div class="typing"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+
+  <!-- LANDING HERO -->
+  <div>
+    <div class="section-label">Landing Hero</div>
+    <div class="hero-preview">
+      <span class="hero-amp">&amp;</span>
+      <div class="hero-sub">just a person on the other end.<br>no pitch. no pricing. just talk.</div>
+      <div class="hero-input">
+        say something...
+        <span class="cursor"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLOR RATIOS -->
+  <div>
+    <div class="section-label">Color Pairings</div>
+    <div class="ratios">
+      <div class="ratio-card amber-black">
+        <span class="amp-sm">&amp;</span>
+        Amber / Black
+      </div>
+      <div class="ratio-card cream-black">
+        <span class="amp-sm">&amp;</span>
+        Cream / Black
+      </div>
+      <div class="ratio-card black-amber">
+        <span class="amp-sm">&amp;</span>
+        Black / Amber
+      </div>
+      <div class="ratio-card ash-amber">
+        <span class="amp-sm">&amp;</span>
+        Ash / Amber
+      </div>
+    </div>
+  </div>
+
+  <!-- BADGES -->
+  <div>
+    <div class="section-label">UI Elements</div>
+    <div class="badge-row">
+      <span class="badge amber-fill">online now</span>
+      <span class="badge amber-outline">beta</span>
+      <span class="badge cream-outline">invite only</span>
+      <span class="badge ash-fill">just talk</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
