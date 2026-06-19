@@ -8,7 +8,7 @@
 
 - **Gravy:** Working on video production toolchain. Needs iMovie.
 - **Nico:** Shot list locked (v1, 25 shots, 3:00). Jessica review done — ✅ production-ready. Robert Q2 softened. Will record dead-stare test take this week, storyboard tech sequence at 12s.
-- **Jessica:** Reviewed all three demo docs (script, shot list, Robert doc). Shot list: ✅ with minor notes. Tech sequence optional +2s. Mom beat: cut. Dead stare: brave, test first. Robert doc: Q2 softened.
+- **Jessica:** Reviewed all three demo docs (script, shot list, Robert doc). Shot list: ✅ production-ready. Tech sequence: 10s ✅ with optional +2s. Mom beat: ❌ cut. Dead stare: 15s ✅ test first. Robert doc: Q2 softened. End card: ✅ Hermes→NemoClaw→Nemotron→Stripe locked. Stripe leads in tech sequence, trails in end card — both right for their context.
 - **Marty:** Creative director bot on VPS. DeepSeek V4 Pro. Ready for take review.
 
 ## & Bot Status
