@@ -4,12 +4,12 @@
 
 ---
 
-## Currently (June 18)
+## Currently (June 19)
 
-- **Gravy:** Stripe account created ✓, live keys wired to & bot ✓. Working on video production toolchain (no editing software yet — needs iMovie). Wants to knock out hackathon tasks tonight.
-- **Nico:** Just got synced. Found & bot running on VPS (DeepSeek). Caught up on storyboard, task board, hackathon plan. Wired Stripe keys from Whitey67 desktop to & bot. Discovered desktop has computer_use = can review video takes visually.
-- **Jessica:** VPS ready, & bot deployed, Stripe tools installed on Whitey67, deploy-agent.sh built. Knows Hermes↔Stripe connection.
-- **Marty:** Creative director bot deployed on VPS. Runs DeepSeek V4 Pro. Grey Poupon server. Handles visual/aesthetic review, demo production, brand consistency.
+- **Gravy:** Working on video production toolchain. Needs iMovie.
+- **Nico:** Shot list locked (v1, 25 shots, 3:00). Jessica review done — ✅ production-ready. Robert Q2 softened. Will record dead-stare test take this week, storyboard tech sequence at 12s.
+- **Jessica:** Reviewed all three demo docs (script, shot list, Robert doc). Shot list: ✅ with minor notes. Tech sequence optional +2s. Mom beat: cut. Dead stare: brave, test first. Robert doc: Q2 softened.
+- **Marty:** Creative director bot on VPS. DeepSeek V4 Pro. Ready for take review.
 
 ## & Bot Status
 
@@ -23,7 +23,7 @@
 | Telegram | @Ampersand45_bot |
 | Live site | ampersand.foo → links to bot ✅ |
 
-## Hackathon — June 30 (12 days)
+## Hackathon — June 30 (11 days)
 
 **What the demo needs to show:**
 1. ✅ & bot greets user (SOUL deployed)
@@ -32,7 +32,7 @@
 4. ❌ Provisions personal agent — no automation yet
 5. ❌ Video production — no editing software, no takes recorded
 
-**NVIDIA angle:** Nemotron 3 Ultra + NemoClaw 2 needs to be VISIBLE in demo. Currently bot runs DeepSeek.
+**NVIDIA angle:** Nemotron 3 Ultra + NemoClaw 2 needs to be VISIBLE in demo. Currently bot runs DeepSeek. Visual cards in shot list carry the narrative.
 
 ## VPS (vultr-1, 216.128.154.45)
 
@@ -56,15 +56,27 @@
 - Editing: **Nothing installed.** Need iMovie (free, App Store).
 - Visual review: Nico can use computer_use to see screen and give feedback on takes.
 - Storyboard: `docs/DEMO_STORYBOARD.md` (6 scenes, PS2-uncanny aesthetic)
+- **Shot list:** ✅ Locked v1. Jessica review done. Production-ready.
+
+## Docs Status
+
+| Doc | Status |
+|-----|--------|
+| `ampersand_demo_script_final_final.md` | ✅ Locked |
+| `ampersand_demo_shot_list.md` | ✅ Locked (25 shots, 3:00) |
+| `for_robert_demo_script.md` | ✅ Q2 softened per Jessica |
+| `DEMO_STORYBOARD.md` | ✅ Restored |
+| `ROBERT_QNA.md` | ✅ |
 
 ## Immediate Next
 
 1. Install iMovie on MacBook
 2. Build onboarding script for & bot
-3. Record Scene 1 test take
-4. Either switch & bot to Nemotron OR stage Nemotron config shots for demo
-5. Get Marty caught up on project context and storyboard
+3. Record Scene 1 dead-stare test take (15s)
+4. Storyboard tech sequence at 12s, compare against 10s
+5. Either switch & bot to Nemotron OR stage Nemotron config shots for demo
+6. Get Marty caught up on project context and storyboard
 
 ---
 
-*Updated: 2026-06-18 (Nico — Stripe wired, Marty added)*
+*Updated: 2026-06-19 (Nico — Jessica review complete, shot list locked, Robert Q2 softened)*
